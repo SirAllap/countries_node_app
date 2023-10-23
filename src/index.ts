@@ -37,7 +37,7 @@ for (let j = 0; j < countryName.length; j++) {
 
 const formattedData: any = resultArray.sort((a, b) => b.density - a.density)
 
-fs.writeFileSync('file/countries.csv', `Country, Population, Area\n`, {
+fs.writeFileSync('countries.csv', `Country, Population, Area\n`, {
 	encoding: 'utf8',
 	flag: 'a+',
 	mode: 0o666,
@@ -45,7 +45,7 @@ fs.writeFileSync('file/countries.csv', `Country, Population, Area\n`, {
 
 formattedData.map((e: any) =>
 	fs.writeFileSync(
-		'file/countries.csv',
+		'countries.csv',
 		`${e.countryName}, ${e.population}, ${e.area}, ${e.density}\n`,
 		{
 			encoding: 'utf8',

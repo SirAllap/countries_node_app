@@ -33,12 +33,12 @@ for (let j = 0; j < countryName.length; j++) {
     }
 }
 const formattedData = resultArray.sort((a, b) => b.density - a.density);
-fs_1.default.writeFileSync('file/countries.csv', `Country, Population, Area\n`, {
+fs_1.default.writeFileSync('countries.csv', `Country, Population, Area\n`, {
     encoding: 'utf8',
     flag: 'a+',
     mode: 0o666,
 });
-formattedData.map((e) => fs_1.default.writeFileSync('file/countries.csv', `${e.countryName}, ${e.population}, ${e.area}, ${e.density}\n`, {
+formattedData.map((e) => fs_1.default.writeFileSync('countries.csv', `${e.countryName}, ${e.population}, ${e.area}, ${e.density}\n`, {
     encoding: 'utf8',
     flag: 'a+',
     mode: 0o666,
