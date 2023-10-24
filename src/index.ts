@@ -42,7 +42,7 @@ for (let j = 0; j < countryName.length; j++) {
 	}
 }
 
-const formattedData: TResultArray[] = resultArray.sort(
+const sortedData: TResultArray[] = resultArray.sort(
 	(a, b) => b.density - a.density
 )
 
@@ -52,7 +52,7 @@ fs.writeFileSync('countries.csv', `Country, Population, Area\n`, {
 	mode: 0o666,
 })
 
-formattedData.map((e: TResultArray) =>
+sortedData.map((e: TResultArray) =>
 	fs.writeFileSync(
 		'countries.csv',
 		`${e.countryName}, ${e.population}, ${e.area}, ${e.density}\n`,
