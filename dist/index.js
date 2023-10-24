@@ -22,7 +22,7 @@ for (let j = 0; j < countryName.length; j++) {
             Number(countriesReverse[j][0].replace(/,/g, ''));
         const country = {
             countryName: countriesReverse[j]
-                .splice(2, countriesReverse[j].length)
+                .splice(2, countriesReverse[j].length - 1)
                 .reverse()
                 .join(' '),
             population: countriesReverse[j][1].replace(/,/g, '.'),

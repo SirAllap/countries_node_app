@@ -2,14 +2,21 @@ import fs from 'fs'
 
 const data = fs.readFileSync('file/countries.txt', 'utf8')
 const splitDataLine = data.split('\n')
-const countryName: any[] = []
+const countryName: string[][] = []
 
 splitDataLine.forEach((e) => {
 	countryName.push(e.split(' '))
 })
 
-const resultArray: any[] = []
-const countriesReverse: any[] = []
+type TResultArray = {
+	countryName: string
+	population: string
+	area: string
+	density: number
+}
+
+const resultArray: TResultArray[] = []
+const countriesReverse: string[][] = []
 
 for (let j = 0; j < countryName.length; j++) {
 	countriesReverse.push(countryName[j].reverse())
@@ -24,7 +31,7 @@ for (let j = 0; j < countryName.length; j++) {
 			Number(countriesReverse[j][0].replace(/,/g, ''))
 		const country = {
 			countryName: countriesReverse[j]
-				.splice(2, countriesReverse[j].length)
+				.splice(2, countriesReverse[j].length - 1)
 				.reverse()
 				.join(' '),
 			population: countriesReverse[j][1].replace(/,/g, '.'),
@@ -35,7 +42,9 @@ for (let j = 0; j < countryName.length; j++) {
 	}
 }
 
-const formattedData: any = resultArray.sort((a, b) => b.density - a.density)
+const formattedData: TResultArray[] = resultArray.sort(
+	(a, b) => b.density - a.density
+)
 
 fs.writeFileSync('countries.csv', `Country, Population, Area\n`, {
 	encoding: 'utf8',
@@ -43,7 +52,7 @@ fs.writeFileSync('countries.csv', `Country, Population, Area\n`, {
 	mode: 0o666,
 })
 
-formattedData.map((e: any) =>
+formattedData.map((e: TResultArray) =>
 	fs.writeFileSync(
 		'countries.csv',
 		`${e.countryName}, ${e.population}, ${e.area}, ${e.density}\n`,
