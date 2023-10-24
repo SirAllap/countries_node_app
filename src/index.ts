@@ -46,20 +46,16 @@ const sortedData: TResultArray[] = resultArray.sort(
 	(a, b) => b.density - a.density
 )
 
-fs.writeFileSync('countries.csv', `Country, Population, Area\n`, {
-	encoding: 'utf8',
+fs.writeFileSync('countries.csv', `Country,Population,Area,`, {
 	flag: 'a+',
-	mode: 0o666,
 })
 
 sortedData.map((e: TResultArray) =>
 	fs.writeFileSync(
 		'countries.csv',
-		`${e.countryName}, ${e.population}, ${e.area}, ${e.density}\n`,
+		`${e.countryName},${e.population},${e.area},${e.density},`,
 		{
-			encoding: 'utf8',
 			flag: 'a+',
-			mode: 0o666,
 		}
 	)
 )
